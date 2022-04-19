@@ -9,7 +9,8 @@
 
 .blogItem__imgContainer,
 .blogItem__summaryContainer {
-	flex: 1;
+	width: 50%;
+	word-wrap: break-word;
 }
 
 .blogItem__summaryContainer {
@@ -23,7 +24,7 @@
 .blogItem__itemContainer {
 	display: flex;
 	text-transform: uppercase;
-	gap: 20px;
+	gap: 10px;
 	margin-bottom: 20px;
 	align-items: center;
 }
@@ -76,7 +77,20 @@
 	font-size: 0.5rem;
 }
 
+.fa-solid.fa-pen-to-square {
+	color: #ff0055;
+}
+
+.fa-solid.fa-trash {
+	color: #ff0055;
+	cursor: pointer;
+}
+
 @media (max-width: 768px) {
+	.blogItem__imgContainer,
+	.blogItem__summaryContainer {
+		width: 100%;
+	}
 	.blogItem__itemContainer {
 		display: block;
 	}

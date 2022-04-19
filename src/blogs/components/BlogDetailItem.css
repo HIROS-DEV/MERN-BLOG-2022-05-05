@@ -9,3 +9,13 @@
     line-height: 2.5rem;
     padding: 50px;
 }
+
+.blogDetail__icons {
+    display: flex;
+    justify-content: flex-end;
+    padding: 5px;
+}
+
+.blogDetail__icons i{
+    margin: 0 .3rem;
+}

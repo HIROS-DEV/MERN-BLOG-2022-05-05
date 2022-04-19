@@ -18,7 +18,7 @@ const BLOGS = [
 		creator: 'Hiro',
 		creatorInfo:
 			'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus itaque, autem necessitatibus voluptate quod mollitia delectus aut, sunt placeat nam vero culpa sapiente consectetur similique, inventore eos fugit cupiditate numquam!',
-		createdAt: new Date().toDateString(),
+		createdAt: new Date().toLocaleDateString(),
 		avatar:
 			'https://images.unsplash.com/photo-1561731216-c3a4d99437d5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=764&q=80',
 	},
@@ -32,7 +32,7 @@ const BLOGS = [
 		creator: 'Ameria',
 		creatorInfo:
 			'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus itaque, autem necessitatibus voluptate quod mollitia delectus aut, sunt placeat nam vero culpa sapiente consectetur similique, inventore eos fugit cupiditate numquam!',
-		createdAt: new Date().toDateString(),
+		createdAt: new Date().toLocaleDateString(),
 		avatar:
 			'https://images.unsplash.com/photo-1601247387431-7966d811f30b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1471&q=80',
 	},
@@ -46,7 +46,7 @@ const BLOGS = [
 		creator: 'Josh',
 		creatorInfo:
 			'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus itaque, autem necessitatibus voluptate quod mollitia delectus aut, sunt placeat nam vero culpa sapiente consectetur similique, inventore eos fugit cupiditate numquam!',
-		createdAt: new Date().toDateString(),
+		createdAt: new Date().toLocaleDateString(),
 		avatar:
 			'https://images.unsplash.com/photo-1502518667998-67891a206ee6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80',
 	},
@@ -60,7 +60,7 @@ const BLOGS = [
 		creator: 'Ketty',
 		creatorInfo:
 			'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus itaque, autem necessitatibus voluptate quod mollitia delectus aut, sunt placeat nam vero culpa sapiente consectetur similique, inventore eos fugit cupiditate numquam!',
-		createdAt: new Date().toDateString(),
+		createdAt: new Date().toLocaleDateString(),
 		avatar:
 			'https://images.unsplash.com/photo-1463852247062-1bbca38f7805?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1476&q=80',
 	},
@@ -79,6 +79,7 @@ const BlogDetail = () => {
 		<div className='blogDetail'>
 			<BlogDetailHeader header={blog.title} />
 			<BlogDetailItem
+				id={blog.id}
 				image={blog.image}
 				title={blog.title}
 				description={blog.description}

@@ -1,4 +1,9 @@
+import { useEffect } from 'react';
+
 const Auth = () => {
-  return <div>Auth</div>;
+	useEffect(() => {
+		window.scrollTo(0, 0);
+	}, []);
+	return <div>Auth</div>;
 };
 export default Auth;

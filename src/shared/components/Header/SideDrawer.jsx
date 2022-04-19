@@ -14,7 +14,7 @@ const SideDrawer = (props) => {
 			unmountOnExit
 			nodeRef={nodeRef}
 		>
-			<aside className='side-drawer' onClick={props.onClick}>{props.children}</aside>
+			<aside ref={nodeRef} className='side-drawer' onClick={props.onClick}>{props.children}</aside>
 		</CSSTransition>
 	);
 	return ReactDOM.createPortal(
