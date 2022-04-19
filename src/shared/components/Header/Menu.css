@@ -1,0 +1,9 @@
+.header__menu{
+    cursor: pointer;
+}
+
+@media (min-width:769px) {
+    .header__menu {
+        display: none;
+    }
+}

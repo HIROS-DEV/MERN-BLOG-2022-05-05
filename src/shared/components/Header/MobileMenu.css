@@ -1,0 +1,8 @@
+.header__mobileMenu {
+}
+
+@media (min-width: 769px) {
+	.header__mobileMenu {
+		display: none;
+	}
+}

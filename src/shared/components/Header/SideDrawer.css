@@ -1,0 +1,32 @@
+.side-drawer {
+	position: fixed;
+	top: 0;
+	right: 0;
+	width: 70%;
+	min-height: 100vh;
+	z-index: 100;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+	background-color: #2B2B2B;
+}
+
+.slide-in-right-enter {
+	transform: translateX(100%);
+}
+
+.slide-in-right-enter-active {
+	transform: translateX(0%);
+	opacity: 1;
+	transition: all 200ms;
+}
+
+.slide-in-right-exit {
+	transform: translateX(100%);
+	opacity: 1;
+}
+
+
+@media (min-width:769px) {
+	.side-drawer {
+		display: none;
+	}
+}
