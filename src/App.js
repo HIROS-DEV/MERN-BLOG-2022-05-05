@@ -1,3 +1,4 @@
+import { useState, useCallback } from 'react';
 import {
 	BrowserRouter as Router,
 	Routes,
@@ -13,28 +14,61 @@ import Auth from './auth/pages/Auth';
 import About from './about/pages/About';
 import Contact from './contact/pages/Contact';
 import MainHeader from './shared/components/Header/MainHeader';
+import { AuthContext } from './shared/context/auth-context';
 import './App.css';
 
 const App = () => {
+	const [isLoggedIn, setIsLoggedIn] = useState(true);
+
+	const login = useCallback(() => {
+		setIsLoggedIn(true);
+	}, []);
+
+	const logout = useCallback(() => {
+		setIsLoggedIn(false);
+	}, []);
+
+	let routes;
+	console.log(isLoggedIn);
+
+	if (isLoggedIn) {
+		routes = (
+			<>
+				<Route path='/' element={<Blogs />} />
+				<Route path='/blog/:blogId' element={<BlogDetail />} />
+				<Route path='/about' element={<About />} />
+				<Route path='/contact' element={<Contact />} />
+				<Route path='/blog/edit/:blogId' element={<EditBlog />} />
+				<Route path='/new' element={<NewBlog />} />
+				<Route path='*' element={<Navigate to='/' replace />} />
+			</>
+		);
+	} else {
+		routes = (
+			<>
+				<Route path='/' element={<Blogs />} />
+				<Route path='/blog/:blogId' element={<BlogDetail />} />
+				<Route path='/about' element={<About />} />
+				<Route path='/auth' element={<Auth />} />
+				<Route path='/contact' element={<Contact />} />
+				<Route path='/*' element={<Navigate to='/auth' replace />} />
+			</>
+		);
+	}
 
 	return (
-		<div className='app'>
-			<Router>
-				<MainHeader />
-				<main className='app__main'>
-					<Routes>
-						<Route path='/' element={<Blogs />} />
-						<Route path='/blog/:blogId' element={<BlogDetail />} />
-						<Route path='/blog/edit/:blogId' element={<EditBlog />} />
-						<Route path='/new' element={<NewBlog />} />
-						<Route path='/auth' element={<Auth />} />
-						<Route path='/about' element={<About />} />
-						<Route path='/contact' element={<Contact />} />
-						<Route path='*' element={<Navigate to='/' replace />} />
-					</Routes>
-				</main>
-			</Router>
-		</div>
+		<AuthContext.Provider
+			value={{ isLoggedIn: isLoggedIn, login: login, logout: logout }}
+		>
+			<div className='app'>
+				<Router>
+					<MainHeader />
+					<main className='app__main'>
+						<Routes>{routes}</Routes>
+					</main>
+				</Router>
+			</div>
+		</AuthContext.Provider>
 	);
 };
 export default App;

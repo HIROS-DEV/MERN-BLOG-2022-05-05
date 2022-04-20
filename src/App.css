@@ -1,3 +1,16 @@
 .app__main{
     margin-top: 7vh;
 }
+
+.center {
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
+.center h2 {
+    font-size: 2rem;
+    text-align: center;
+}

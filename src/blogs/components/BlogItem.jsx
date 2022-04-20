@@ -1,11 +1,13 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 
 import Modal from '../../shared/components/UIElements/Modal';
 import Button from '../../shared/components/FormElements/Button';
+import { AuthContext } from '../../shared/context/auth-context';
 import './BlogItem.css';
 
 const BlogItem = (props) => {
+	const auth = useContext(AuthContext);
 	const [showConfirmModal, setShowConfirmModal] = useState(false);
 
 	const showDeleteWarningHandelr = () => {
@@ -71,15 +73,17 @@ const BlogItem = (props) => {
 								<p>3 comments</p>
 							</Link>
 						</div>
-						<div className='blogItem__itemWrapper'>
-							<Link to={`/blog/edit/${props.id}`}>
-								<i className='fa-solid fa-pen-to-square'></i>
-							</Link>
-							<i
-								className='fa-solid fa-trash'
-								onClick={showDeleteWarningHandelr}
-							></i>
-						</div>
+						{auth.isLoggedIn && (
+							<div className='blogItem__itemWrapper'>
+								<Link to={`/blog/edit/${props.id}`}>
+									<i className='fa-solid fa-pen-to-square'></i>
+								</Link>
+								<i
+									className='fa-solid fa-trash'
+									onClick={showDeleteWarningHandelr}
+								></i>
+							</div>
+						)}
 					</div>
 					<Link to={`/blog/${props.id}`}>
 						<h1>{props.title}</h1>

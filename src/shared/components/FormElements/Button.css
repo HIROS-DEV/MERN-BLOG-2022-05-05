@@ -43,6 +43,18 @@
 	border-color: #f34343;
 }
 
+.button--info {
+	background: forestgreen;
+	border-color: forestgreen;
+}
+
+.button--info:hover,
+.button--info:active {
+	opacity: 0.9;
+	background: forestgreen;
+	border-color: forestgreen;
+}
+
 .button:disabled,
 .button:hover:disabled,
 .button:active:disabled {

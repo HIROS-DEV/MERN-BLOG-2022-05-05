@@ -1,0 +1,23 @@
+.blog-form {
+	width: 100%;
+	min-height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 1rem 0;
+}
+
+.blog-form__container {
+	width: 90%;
+	min-height: 80vh;
+	padding: 2rem;
+	max-width: 50rem;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+	border-radius: 6px;
+	background: white;
+	text-align: center;
+}
+
+.blog-form button {
+	width: 100%;
+}

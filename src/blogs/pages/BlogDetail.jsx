@@ -68,7 +68,8 @@ const BLOGS = [
 
 const BlogDetail = () => {
 	const { blogId } = useParams();
-	//TODO: In fact, I have to retrive data to use UseEffect from backend
+
+	//TODO: I have to retrive data to use UseEffect from backend
 	const blog = BLOGS.find((blog) => blog.id === blogId);
 
 	useEffect(() => {
