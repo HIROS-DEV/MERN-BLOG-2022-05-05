@@ -70,10 +70,13 @@ const BlogDetailItem = (props) => {
 						></i>
 					</div>
 				)}
-				<img
-					src={`http://localhost:5000/${props.image}`}
-					alt={props.title}
-				/>
+				{/*********** MongoDB + Local image **********/}
+				{/* <img src={`http://localhost:5000/${props.image}`} alt={props.title} /> */}
+				{/********************************************/}
+
+				{/*********** MongoDB + Cloudinary image **********/}
+				<img src={`${props.image}`} alt={props.title} />
+				{/********************************************/}
 				<p>&nbsp;{props.description}</p>
 			</div>
 		</>

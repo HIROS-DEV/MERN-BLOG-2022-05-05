@@ -66,7 +66,13 @@ const BlogItem = (props) => {
 				{isLoading && <Loadingspinner asOverlay />}
 				<div className='blogItem__imgContainer'>
 					<Link to={`/blog/${props.id}`}>
-						<img src={`http://localhost:5000/${props.image}`} alt={props.title} />
+						{/*********** MongoDB + Local image **********/}
+						{/* <img src={`http://localhost:5000/${props.image}`} alt={props.title} /> */}
+						{/********************************************/}
+
+						{/*********** MongoDB + Cloudinary image **********/}
+						<img src={`${props.image}`} alt={props.title} />
+						{/********************************************/}
 					</Link>
 				</div>
 				<div className='blogItem__summaryContainer'>
