@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 
 import Input from '../../shared/components/FormElements/Input';
@@ -12,12 +12,14 @@ import {
 } from '../../shared/utils/validators';
 import { useHttpClient } from '../../shared/hooks/http-hook';
 import './EditBlog.css';
+import { AuthContext } from '../../shared/context/auth-context';
 
 const EditBlog = () => {
 	useEffect(() => {
 		window.scrollTo(0, 0);
 	}, []);
 
+	const auth = useContext(AuthContext);
 	const navigate = useNavigate();
 	const { blogId } = useParams();
 
@@ -76,6 +78,7 @@ const EditBlog = () => {
 				}),
 				{
 					'Content-Type': 'application/json',
+					Authorization: 'Bearer ' + auth.token,
 				}
 			);
 			navigate(`/blog/${blogId}`);

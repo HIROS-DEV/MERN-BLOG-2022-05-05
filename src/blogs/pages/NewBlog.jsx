@@ -55,7 +55,8 @@ const NewBlog = () => {
 			await sendRequest(
 				`http://localhost:5000/api/blogs`,
 				'POST',
-				formData
+				formData,
+				{ Authorization: 'Bearer ' + auth.token }
 			);
 			navigate('/');
 		} catch (err) {}
