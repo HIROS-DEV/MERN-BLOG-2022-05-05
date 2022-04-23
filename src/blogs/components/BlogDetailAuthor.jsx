@@ -7,7 +7,7 @@ const BlogDetailAuthor = (props) => {
 		<div className='blogDetail__author'>
 			<div className='blogDetail__authorContainer'>
 				<Avatar
-					image={`http://localhost:5000/${props.avatar}`}
+					image={`${props.avatar}`}
 					alt={props.creator}
 					width='100px'
 					height='100px'

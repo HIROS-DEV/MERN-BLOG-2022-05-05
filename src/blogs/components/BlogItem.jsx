@@ -79,7 +79,7 @@ const BlogItem = (props) => {
 					<div className='blogItem__itemContainer'>
 						<div className='blogItem__itemWrapper'>
 							<img
-								src={`http://localhost:5000/${props.avatar}`}
+								src={`${props.avatar}`}
 								alt='avatar'
 								className='blogItem__avatar'
 							/>
