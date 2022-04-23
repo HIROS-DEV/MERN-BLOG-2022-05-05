@@ -4,11 +4,11 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
-    text-align: center;
+	text-align: center;
 }
 
 .auth-form__container > h2 {
-    line-height: 3rem;
+	line-height: 3rem;
 }
 
 .auth-form__container {
@@ -21,10 +21,18 @@
 	background: white;
 }
 
-
 .auth-form__container button {
-    width: 100%;
+	width: 100%;
 	padding: 10px 0;
 	border-radius: 1px;
-	margin: .5rem 0;
+	margin: 0.5rem 0;
+}
+
+@media (max-width: 576px) {
+	.auth-form {
+		height: auto;
+	}
+	.auth-form__container {
+		margin: 20px 0;
+	}
 }

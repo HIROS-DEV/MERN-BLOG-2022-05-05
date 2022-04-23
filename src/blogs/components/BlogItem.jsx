@@ -1,13 +1,18 @@
-import { useState, useContext } from 'react';
+import { useState, useContext, memo } from 'react';
 import { Link } from 'react-router-dom';
 
 import Modal from '../../shared/components/UIElements/Modal';
+import ErrorModal from '../../shared/components/UIElements/ErrorModal';
+import Loadingspinner from '../../shared/components/UIElements/LoadingSpinner';
 import Button from '../../shared/components/FormElements/Button';
 import { AuthContext } from '../../shared/context/auth-context';
+import { useHttpClient } from '../../shared/hooks/http-hook';
 import './BlogItem.css';
 
 const BlogItem = (props) => {
 	const auth = useContext(AuthContext);
+	const { isLoading, error, sendRequest, clearError } =
+		useHttpClient();
 	const [showConfirmModal, setShowConfirmModal] = useState(false);
 
 	const showDeleteWarningHandelr = () => {
@@ -16,13 +21,20 @@ const BlogItem = (props) => {
 	const cancelDeleteHandler = () => {
 		setShowConfirmModal(false);
 	};
-	const confirmDeleteHandler = () => {
-		console.log('DELETE...');
+	const confirmDeleteHandler = async () => {
 		setShowConfirmModal(false);
+		try {
+			await sendRequest(
+				`http://localhost:5000/api/blogs/${props.id}`,
+				'DELETE'
+			);
+			props.onDelete(props.id);
+		} catch (err) {}
 	};
 
 	return (
 		<>
+			<ErrorModal error={error} onClear={clearError} />
 			<Modal
 				show={showConfirmModal}
 				onCancel={cancelDeleteHandler}
@@ -51,15 +63,20 @@ const BlogItem = (props) => {
 						: `blogItem__li reverse`
 				}
 			>
+				{isLoading && <Loadingspinner asOverlay />}
 				<div className='blogItem__imgContainer'>
 					<Link to={`/blog/${props.id}`}>
-						<img src={props.image} alt={props.title} />
+						<img src={`http://localhost:5000/${props.image}`} alt={props.title} />
 					</Link>
 				</div>
 				<div className='blogItem__summaryContainer'>
 					<div className='blogItem__itemContainer'>
 						<div className='blogItem__itemWrapper'>
-							<i className='fa-solid fa-user'></i>
+							<img
+								src={`http://localhost:5000/${props.avatar}`}
+								alt='avatar'
+								className='blogItem__avatar'
+							/>
 							<p>{props.creator}</p>
 						</div>
 						<div className='blogItem__itemWrapper'>
@@ -70,10 +87,10 @@ const BlogItem = (props) => {
 							<Link to={`/blog/${props.id}`}>
 								<i className='fa-solid fa-comment'></i>
 								{/* TODO: show comments length from props*/}
-								<p>3 comments</p>
+								<p>3</p>
 							</Link>
 						</div>
-						{auth.isLoggedIn && (
+						{auth.userId === props.creatorId && (
 							<div className='blogItem__itemWrapper'>
 								<Link to={`/blog/edit/${props.id}`}>
 									<i className='fa-solid fa-pen-to-square'></i>
@@ -97,4 +114,4 @@ const BlogItem = (props) => {
 		</>
 	);
 };
-export default BlogItem;
+export default memo(BlogItem);

@@ -3,6 +3,12 @@
     margin: 0 auto;
 }
 
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 @media (max-width: 1024px ){
     .blogs {
         max-width: 800px;

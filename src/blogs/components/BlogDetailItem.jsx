@@ -1,12 +1,18 @@
-import { useState, useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { useState, useContext, memo } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 
 import Button from '../../shared/components/FormElements/Button';
 import Modal from '../../shared/components/UIElements/Modal';
+import ErrorModal from '../../shared/components/UIElements/ErrorModal';
 import { AuthContext } from '../../shared/context/auth-context';
+import { useHttpClient } from '../../shared/hooks/http-hook';
 import './BlogDetailItem.css';
+import Loadingspinner from '../../shared/components/UIElements/LoadingSpinner';
 
 const BlogDetailItem = (props) => {
+	const navigate = useNavigate();
+	const { error, isLoading, sendRequest, clearError } =
+		useHttpClient();
 	const auth = useContext(AuthContext);
 	const [showConfirmModal, setShowConfirmModal] = useState(false);
 
@@ -16,13 +22,20 @@ const BlogDetailItem = (props) => {
 	const cancelDeleteHandler = () => {
 		setShowConfirmModal(false);
 	};
-	const confirmDeleteHandler = () => {
-		console.log('DELETE...');
+	const confirmDeleteHandler = async () => {
 		setShowConfirmModal(false);
+		try {
+			await sendRequest(
+				`http://localhost:5000/api/blogs/${props.id}`,
+				'DELETE'
+			);
+			navigate('/');
+		} catch (err) {}
 	};
 
 	return (
 		<>
+			<ErrorModal error={error} onClear={clearError} />
 			<Modal
 				show={showConfirmModal}
 				onCancel={cancelDeleteHandler}
@@ -45,7 +58,8 @@ const BlogDetailItem = (props) => {
 				</p>
 			</Modal>
 			<div className='blogDetail__item'>
-				{auth.isLoggedIn && (
+				{isLoading && <Loadingspinner asOverlay />}
+				{auth.userId === props.creatorId && (
 					<div className='blogDetail__icons'>
 						<Link to={`/blog/edit/${props.id}`}>
 							<i className='fa-solid fa-pen-to-square'></i>
@@ -56,10 +70,13 @@ const BlogDetailItem = (props) => {
 						></i>
 					</div>
 				)}
-				<img src={props.image} alt={props.title} />
+				<img
+					src={`http://localhost:5000/${props.image}`}
+					alt={props.title}
+				/>
 				<p>&nbsp;{props.description}</p>
 			</div>
 		</>
 	);
 };
-export default BlogDetailItem;
+export default memo(BlogDetailItem);

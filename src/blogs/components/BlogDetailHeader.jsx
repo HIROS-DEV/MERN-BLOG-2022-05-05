@@ -1,3 +1,4 @@
+import {memo} from 'react'
 import './BlogDetailHeader.css';
 
 const BlogDetailHeader = (props) => {
@@ -7,4 +8,4 @@ const BlogDetailHeader = (props) => {
 		</header>
 	);
 };
-export default BlogDetailHeader;
+export default memo(BlogDetailHeader);
