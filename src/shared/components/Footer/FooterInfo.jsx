@@ -13,7 +13,7 @@ const FooterInfo = () => {
 				</li>
 				<li className='footer__infoLi'>
 					<i className='fa-solid fa-paper-plane'></i>
-					<p>hirosdev@gmail.com</p>
+					<p>fake@gmail.com</p>
 				</li>
 			</ul>
 		</div>
