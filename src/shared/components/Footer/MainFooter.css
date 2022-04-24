@@ -1,3 +1,152 @@
 .footer {
-    display: flex;
+	display: flex;
+	justify-content: space-evenly;
+	max-width: 1200px;
+	min-height: 40vh;
+	margin: 0 auto;
+}
+
+.footer__title {
+	padding: 50px 0;
+}
+
+.footer h2 {
+	font-size: 1rem;
+}
+
+.footer__titleWrapper p {
+	color: #999999;
+	line-height: 1.5rem;
+}
+
+.footer__titleWrapper i {
+	color: #c4c4c4;
+	font-size: 3rem;
+	padding: 10px;
+	transition: all 0.4s;
+}
+
+.footer__titleWrapper i:hover {
+	color: black;
+}
+
+.fa-brands.fa-twitter-square {
+	padding-left: 0;
+}
+
+.footer__explore ul li {
+	color: #999999;
+	padding: 10px 0;
+}
+
+.footer__explore ul li p span {
+	padding-right: 5px;
+}
+
+.footer__titleLi a {
+	transition: all 0.4s;
+}
+
+.footer__titleLi a:hover {
+	color: #f4bf2c;
+}
+
+.footer__explore ul li p span i {
+	font-size: 0.5rem;
+}
+
+.footer_recentPosts img {
+	width: 45px;
+	height: 45px;
+	border-radius: 4px;
+	object-fit: cover;
+	margin-right: 10px;
+}
+
+.footer__recentPostsLi {
+	display: flex;
+	align-items: center;
+	margin-bottom: 20px;
+}
+
+.footer__recentPostsLi a {
+	display: flex;
+	align-items: center;
+}
+
+.footer__recentPostsLi a i,
+.footer__recentPostsLi a p {
+	transition: all 0.4s;
+}
+
+.footer__recentPostsLi a:hover i,
+.footer__recentPostsLi a:hover p {
+	color: #f4bf2c;
+}
+
+.footer__recentPostLi-creatorInfo {
+	display: flex;
+	align-items: center;
+}
+
+.footer__recentPostLi-creatorInfo i {
+	font-size: 0.8rem;
+	color: #999999;
+	padding-right: 5px;
+}
+
+.footer__recentPostLi-creatorInfo .fa-solid.fa-user {
+	padding-left: 5px;
+}
+
+.footer__recentPostLi-creatorInfo p {
+	font-size: 0.9rem;
+	color: #999999;
+}
+
+.footer__recentPostsLi--title {
+	color: #666666;
+	line-height: 1.5rem;
+}
+
+.footer__infoLi {
+	display: flex;
+	padding: 10px 0;
+}
+
+.footer__infoLi i {
+	margin-right: 20px;
+}
+
+.footer__copyright {
+	text-align: center;
+	width: 100%;
+	background-color: #e9e9e9;
+	color: #666666;
+	line-height: 1.5rem;
+	padding: 50px;
+}
+
+.footer__copyright a {
+	color: #f4bf2c;
+}
+
+.footer__copyright-bottomContainer{
+	margin-top: 20px;
+	font-size: .8rem;
+}
+
+@media (max-width: 1024px) {
+	.footer {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		padding: 20px;
+	}
+}
+
+@media (max-width: 576px) {
+	.footer {
+		display: grid;
+		grid-template-columns: repeat(1, 1fr);
+	}
 }

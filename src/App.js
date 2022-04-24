@@ -16,6 +16,8 @@ import MainHeader from './shared/components/Header/MainHeader';
 import { AuthContext } from './shared/context/auth-context';
 import { useAuth } from './shared/hooks/auth-hook';
 import './App.css';
+import MainFooter from './shared/components/Footer/MainFooter';
+import FooterCoptright from './shared/components/Footer/FooterCopyright';
 
 const App = () => {
 	const { token, login, logout, userId } = useAuth();
@@ -63,6 +65,7 @@ const App = () => {
 					<main className='app__main'>
 						<Routes>{routes}</Routes>
 					</main>
+					<MainFooter />
 				</Router>
 			</div>
 		</AuthContext.Provider>
