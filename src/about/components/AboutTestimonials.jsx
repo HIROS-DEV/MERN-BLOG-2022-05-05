@@ -2,6 +2,7 @@ import { v4 } from 'uuid';
 import { faker } from '@faker-js/faker';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Pagination, Navigation } from 'swiper';
+import { RiDoubleQuotesL } from 'react-icons/ri';
 
 import 'swiper/css';
 import 'swiper/css/lazy';
@@ -84,7 +85,10 @@ const AboutTestimonials = () => {
 						<SwiperSlide key={user.id}>
 							<div className='about__testimonials--swiper'>
 								<div className='about__testimonials--swiperInner'>
-									<img src={user.avatar} alt={user.user} />
+									<div className='about__testimonials--imgContainer'>
+										<img src={user.avatar} alt={user.user} />
+										<RiDoubleQuotesL className='about__testimonials--icon'/>
+									</div>
 									<div>
 										<h2>{user.user}</h2>
 										<h5>{user.posiiton}</h5>
