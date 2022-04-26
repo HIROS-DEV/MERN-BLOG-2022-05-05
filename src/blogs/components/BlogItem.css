@@ -80,8 +80,15 @@
 .blogItem__summaryContainer > p {
 	color: gray;
 	font-size: 1.2rem;
-	line-height: 1.8rem;
-	padding: 1.5rem 0;
+	line-height: 2rem;
+	max-width: 100%;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box !important;
+	-webkit-line-clamp: 4;
+	-webkit-box-orient: vertical;
+	white-space: normal;
+	margin: 2rem 0;
 }
 
 .fa-solid.fa-arrow-right-long {
@@ -123,7 +130,7 @@
 		font-size: 4.5rem;
 		line-height: 5rem;
 	}
-		.blogItem__avatar {
+	.blogItem__avatar {
 		width: 16px;
 		height: 16px;
 	}
