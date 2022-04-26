@@ -1,0 +1,91 @@
+.about__testimonials {
+	text-align: center;
+	min-height: 50vh;
+	position: relative;
+	padding: 50px;
+	margin: 50px 0;
+}
+
+.about__testimonials > p {
+	font-size: 0.7rem;
+	line-height: 1.5rem;
+}
+
+.about__testimonials > h1 {
+	font-size: 3rem;
+	line-height: 6rem;
+	font-weight: 500;
+}
+
+.about__testimonials-Container {
+	height: 350px;
+}
+
+.swiper {
+	width: 100%;
+	height: 100%;
+}
+
+.swiper-slide {
+	text-align: center;
+	font-size: 18px;
+	background: #fff;
+}
+
+.about__testimonials--swiper {
+	padding: 20px;
+}
+
+.about__testimonials--swiper p {
+	margin-top: 50px;
+	text-align: start;
+	color: #666666;
+	line-height: 1.5rem;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: 3;
+	-webkit-box-orient: vertical;
+	max-height: 5rem;
+}
+
+.about__testimonials--swiperInner {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.swiper-slide img {
+	width: 4rem;
+	height: 4rem;
+	border-radius: 50%;
+	object-fit: cover;
+	margin: 0 10px;
+	vertical-align: middle;
+}
+
+.about__testimonials--swiperInner div {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+}
+
+.about__testimonials--swiperInner div h2 {
+	font-size: 1rem;
+	line-height: 1.5rem;
+}
+
+.about__testimonials--swiperInner div h5 {
+	font-size: 0.8rem;
+	line-height: 1.5rem;
+	color: #f4bf2d;
+}
+
+.swiper-slide.swiper-slide-next {
+	background-color: #444444;
+	color: white;
+}
+
+.swiper-slide.swiper-slide-next p {
+	color: white;
+}

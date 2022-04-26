@@ -1,0 +1,93 @@
+.about__info {
+	display: flex;
+	width: 100%;
+	height: 100%;
+	gap: 50px;
+	padding: 50px;
+}
+
+.about__info > div {
+	flex: 1;
+}
+
+.about__info img {
+	object-fit: cover;
+}
+
+.about__info--profile > p {
+	color: #666666;
+	font-weight: bold;
+	font-size: 0.8rem;
+}
+
+.about__info--profile > h1 {
+	font-size: 3rem;
+	line-height: 4rem;
+	font-weight: 600;
+	padding: 10px 0 20px 0;
+}
+
+.about__info-skills {
+	display: flex;
+	align-items: center;
+	background-color: white;
+	gap: 10px;
+	padding: 20px;
+	margin: 10px 0;
+	transition: all 0.4s;
+}
+
+.about__info-skills:hover {
+	background-color: #444444;
+	color: white;
+	opacity: 2;
+}
+
+.about__info-skillsText h1 {
+	text-decoration: underline;
+	font-size: 1.5rem;
+	line-height: 3rem;
+	font-weight: 500;
+}
+
+.about__info-skillsText p {
+	color: #999999;
+	font-weight: 500;
+	font-size: 1rem;
+	line-height: 1.5rem;
+}
+
+.about__info-skillsIcon {
+	font-size: 4rem;
+}
+
+.about__info-skillsIcon-react {
+	color: skyblue;
+}
+
+.about__info-skillsIcon-node {
+	color: #43853d;
+}
+
+.about__info-skillsIcon-mongo {
+	color: #126149;
+}
+
+@media (max-width: 768px) {
+	.about__info {
+		display: block;
+	}
+	.about__info--profile > p {
+		padding-top: 20px;
+	}
+}
+
+@media (max-width: 320px) {
+	.about__info-skillsText h1{
+		font-size: 1.2rem;
+		line-height: 1.5rem;
+	}
+	.about__info-skillsText p {
+		font-size: .8rem;
+	}
+}

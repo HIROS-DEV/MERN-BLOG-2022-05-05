@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-import BlogsHeader from '../components/BlogsHeader';
+import BlogsHeader from '../../shared/components/Header/BlogsHeader';
 import BlogsList from '../components/BlogsList';
 import ErrorModal from '../../shared/components/UIElements/ErrorModal';
 import LoadingSpinner from '../../shared/components/UIElements/LoadingSpinner';

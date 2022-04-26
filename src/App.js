@@ -15,9 +15,10 @@ import Contact from './contact/pages/Contact';
 import MainHeader from './shared/components/Header/MainHeader';
 import { AuthContext } from './shared/context/auth-context';
 import { useAuth } from './shared/hooks/auth-hook';
-import './App.css';
 import MainFooter from './shared/components/Footer/MainFooter';
-import FooterCoptright from './shared/components/Footer/FooterCopyright';
+
+import './App.css';
+
 
 const App = () => {
 	const { token, login, logout, userId } = useAuth();

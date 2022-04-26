@@ -1,29 +1,28 @@
 import { Link } from 'react-router-dom';
+import { faker } from '@faker-js/faker';
+import { v4 } from 'uuid';
 
 const DUMMY_POSTS = [
 	{
-		id: 'p1',
+		id: v4(),
 		createdAt: new Date().toLocaleDateString(),
-		creator: 'hiro',
-		title: 'Creativity and Inspiration',
-		image:
-			'https://images.unsplash.com/photo-1467269204594-9661b134dd2b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80',
+		creator: faker.name.firstName(),
+		title: faker.lorem.paragraph(),
+		image: faker.image.image(),
 	},
 	{
-		id: 'p2',
+		id: v4(),
 		createdAt: new Date().toLocaleDateString(),
-		creator: 'hiro',
-		title: 'Creativity and Inspiration2',
-		image:
-			'https://images.unsplash.com/photo-1467269204594-9661b134dd2b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80',
+		creator: faker.name.firstName(),
+		title: faker.lorem.paragraph(),
+		image: faker.image.image(),
 	},
 	{
-		id: 'p3',
+		id: v4(),
 		createdAt: new Date().toLocaleDateString(),
-		creator: 'hiro',
-		title: 'Creativity and Inspiration3',
-		image:
-			'https://images.unsplash.com/photo-1467269204594-9661b134dd2b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80',
+		creator: faker.name.firstName(),
+		title: faker.lorem.paragraph(),
+		image: faker.image.image(),
 	},
 ];
 
@@ -42,7 +41,12 @@ const FooterRecentPosts = () => {
 								<div className='footer__recentPostLi-creatorInfo'>
 									<i className='fa-solid fa-calendar-days'></i>
 									<p>{post.createdAt}</p>
-									<i className='fa-solid fa-user'></i>
+									<span className='footer__recentPostLi-creatorAvatar'>
+										<img
+											src={faker.image.avatar()}
+											alt={post.creator}
+										/>
+									</span>
 									<p>{post.creator}</p>
 								</div>
 								<p className='footer__recentPostsLi--title'>

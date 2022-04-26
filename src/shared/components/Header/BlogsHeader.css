@@ -58,6 +58,10 @@
 	margin-top: 5px;
 }
 
+.about .blogs__header{
+	height: 50vh;
+}
+
 @media (max-width: 768px) {
 	.blogs__header-textContainer {
 		display: block;
