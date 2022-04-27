@@ -56,9 +56,9 @@ const DUMMY_TESTIMONIALS = [
 	},
 ];
 
-const AboutTestimonials = () => {
+const AboutTestimonials = ({aos}) => {
 	return (
-		<div className='about__testimonials'>
+		<div className='about__testimonials' data-aos={aos}>
 			<p>TESTIMONIAL</p>
 			<h1>Happy Readers</h1>
 			<div className='about__testimonials-Container'>
@@ -87,7 +87,7 @@ const AboutTestimonials = () => {
 								<div className='about__testimonials--swiperInner'>
 									<div className='about__testimonials--imgContainer'>
 										<img src={user.avatar} alt={user.user} />
-										<RiDoubleQuotesL className='about__testimonials--icon'/>
+										<RiDoubleQuotesL className='about__testimonials--icon' />
 									</div>
 									<div>
 										<h2>{user.user}</h2>

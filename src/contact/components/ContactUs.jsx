@@ -8,7 +8,7 @@ import './ContactUs.css';
 
 mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_TOKEN;
 
-const ContactUs = () => {
+const ContactUs = ({aos}) => {
 	const mapContainer = useRef(null);
 	const map = useRef(null);
 	// eslint-disable-next-line no-unused-vars
@@ -29,7 +29,7 @@ const ContactUs = () => {
 	});
 
 	return (
-		<div className='contactUs'>
+		<div className='contactUs' data-aos={aos}>
 			<div className='contactUs__innerDiv'>
 				<h1>Cotact us</h1>
 				<p>We're open for any suggestion or just to have a chat</p>

@@ -1,5 +1,6 @@
 import { useState, useContext, memo } from 'react';
 import { Link } from 'react-router-dom';
+import { useParallax, Parallax } from 'react-scroll-parallax';
 
 import Modal from '../../shared/components/UIElements/Modal';
 import ErrorModal from '../../shared/components/UIElements/ErrorModal';
@@ -11,6 +12,8 @@ import './BlogItem.css';
 
 const BlogItem = (props) => {
 	const auth = useContext(AuthContext);
+	const {ref} = useParallax({speed: 15})
+
 	const { isLoading, error, sendRequest, clearError } =
 		useHttpClient();
 	const [showConfirmModal, setShowConfirmModal] = useState(false);
@@ -66,7 +69,7 @@ const BlogItem = (props) => {
 				}
 			>
 				{isLoading && <Loadingspinner asOverlay />}
-				<div className='blogItem__imgContainer'>
+				<div ref={ref} className='blogItem__imgContainer'>
 					<Link to={`/blog/${props.id}`}>
 						{/*********** MongoDB + Local image **********/}
 						{/* <img src={`http://localhost:5000/${props.image}`} alt={props.title} /> */}

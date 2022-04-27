@@ -1,4 +1,4 @@
-import { v4 } from 'uuid'
+import { v4 } from 'uuid';
 
 import AboutInfoSkills from './AboutInfoSkills';
 import './AboutInfo.css';
@@ -24,9 +24,9 @@ const INFO_SKILLS = [
 	},
 ];
 
-const AboutInfo = () => {
+const AboutInfo = ({ aos }) => {
 	return (
-		<div className='about__info'>
+		<div className='about__info' data-aos={aos}>
 			<div>
 				<img
 					src='https://images.unsplash.com/photo-1535930749574-1399327ce78f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=736&q=80'

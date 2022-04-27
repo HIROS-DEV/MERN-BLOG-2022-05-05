@@ -4,6 +4,7 @@ import {
 	Route,
 	Navigate,
 } from 'react-router-dom';
+import { ParallaxProvider } from 'react-scroll-parallax';
 
 import Blogs from './blogs/pages/Blogs';
 import BlogDetail from './blogs/pages/BlogDetail';
@@ -18,7 +19,6 @@ import { useAuth } from './shared/hooks/auth-hook';
 import MainFooter from './shared/components/Footer/MainFooter';
 
 import './App.css';
-
 
 const App = () => {
 	const { token, login, logout, userId } = useAuth();
@@ -60,15 +60,17 @@ const App = () => {
 				logout: logout,
 			}}
 		>
-			<div className='app'>
-				<Router>
-					<MainHeader />
-					<main className='app__main'>
-						<Routes>{routes}</Routes>
-					</main>
-					<MainFooter />
-				</Router>
-			</div>
+			<ParallaxProvider>
+				<div className='app'>
+					<Router>
+						<MainHeader />
+						<main className='app__main'>
+							<Routes>{routes}</Routes>
+						</main>
+						<MainFooter />
+					</Router>
+				</div>
+			</ParallaxProvider>
 		</AuthContext.Provider>
 	);
 };
