@@ -14,6 +14,7 @@ import { useForm } from '../../shared/hooks/form-hook';
 import { useHttpClient } from '../../shared/hooks/http-hook';
 import { AuthContext } from '../../shared/context/auth-context';
 import './BlogComments.css';
+import ReplyComment from './ReplyComment';
 
 const BlogComments = () => {
 	const navigate = useNavigate();
@@ -121,10 +122,17 @@ const BlogComments = () => {
 
 						{comments &&
 							comments.map((comment, index) => (
-								<BlogSingleComment
-									key={comment.id}
-									comment={comment}
-								/>
+								<>
+									<BlogSingleComment
+										key={comment.id}
+										comment={comment}
+									/>
+									{/* <ReplyComment
+										comments={comments}
+										parentCommentId={comment.id}
+										key={index}
+									/> */}
+								</>
 							))}
 
 						<form

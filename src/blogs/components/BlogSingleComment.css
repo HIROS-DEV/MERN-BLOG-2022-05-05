@@ -1,6 +1,5 @@
 .singleComment {
 	display: flex;
-	align-items: center;
 	gap: 20px;
 	padding: 20px;
 	border-bottom: 1px solid silver;
@@ -31,6 +30,11 @@
 .singleComment__infoContainer p {
 	font-weight: 500;
 	padding-bottom: 10px;
+}
+
+.singleComment__infoContainer button {
+	padding: 5px;
+	font-size: .7rem;
 }
 
 .singleComment__reply form input::placeholder {
