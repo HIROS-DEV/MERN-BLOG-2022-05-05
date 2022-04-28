@@ -54,3 +54,12 @@ textarea {
 	border-color: red;
 	background: #ffd1d1;
 }
+
+.form-control textarea:disabled,
+.form-control textarea:hover:disabled,
+.form-control textarea:active:disabled {
+	background: #ccc;
+	color: #979797;
+	border-color: #ccc;
+	cursor: not-allowed;
+}

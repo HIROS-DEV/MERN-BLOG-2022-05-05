@@ -62,6 +62,7 @@ const Input = (props) => {
 				value={inputState.value}
 				autoComplete='off'
 				className={props.className}
+				disabled={props.disabled}
 			/>
 		) : (
 			<textarea
@@ -74,6 +75,7 @@ const Input = (props) => {
 				value={inputState.value}
 				autoComplete='off'
 				className={props.className}
+				disabled={props.disabled}
 			/>
 		);
 

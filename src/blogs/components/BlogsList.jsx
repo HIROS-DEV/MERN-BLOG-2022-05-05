@@ -26,7 +26,6 @@ const BlogsList = (props) => {
 					createdAt={new Date(blog.createdAt).toLocaleDateString()}
 					index={index}
 					onDelete={props.onDeleteBlog}
-					//TODO: add comments props here!!!
 				/>
 			))}
 		</ul>

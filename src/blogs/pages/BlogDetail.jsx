@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 import BlogDetailAuthor from '../components/BlogDetailAuthor';
 import BlogDetailHeader from '../components/BlogDetailHeader';
 import BlogDetailItem from '../components/BlogDetailItem';
+import BlogComments from '../components/BlogComments';
 import ErrorModal from '../../shared/components/UIElements/ErrorModal';
 import LoadingSpinner from '../../shared/components/UIElements/LoadingSpinner';
 import { useHttpClient } from '../../shared/hooks/http-hook';
@@ -35,12 +36,12 @@ const BlogDetail = () => {
 	return (
 		<>
 			<ErrorModal error={error} onClear={clearError} />
+			{isLoading && (
+				<div>
+					<LoadingSpinner asOverlay />
+				</div>
+			)}
 			<div className='blogDetail'>
-				{isLoading && (
-					<div className='center'>
-						<LoadingSpinner />
-					</div>
-				)}
 				{!isLoading && blog && (
 					<>
 						<BlogDetailHeader header={blog.title} />
@@ -55,6 +56,12 @@ const BlogDetail = () => {
 							creator={blog.creator.name}
 							creatorInfo={blog.creatorInfo}
 							avatar={blog.creator.avatar}
+						/>
+						<BlogComments
+							creator={blog.creator.name}
+							creatorInfo={blog.creatorInfo}
+							avatar={blog.creator.avatar}
+							blog={blog}
 						/>
 					</>
 				)}

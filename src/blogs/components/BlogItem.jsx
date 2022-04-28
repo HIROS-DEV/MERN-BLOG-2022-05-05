@@ -97,7 +97,6 @@ const BlogItem = (props) => {
 						<div className='blogItem__itemWrapper'>
 							<Link to={`/blog/${props.id}`}>
 								<i className='fa-solid fa-comment'></i>
-								{/* TODO: show comments length from props*/}
 								<p>3</p>
 							</Link>
 						</div>
