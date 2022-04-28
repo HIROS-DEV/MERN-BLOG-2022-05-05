@@ -4,6 +4,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import Input from '../../shared/components/FormElements/Input';
 import Button from '../../shared/components/FormElements/Button';
 import BlogSingleComment from './BlogSingleComment';
+import ReplyComment from './ReplyComment';
 import ErrorModal from '../../shared/components/UIElements/ErrorModal';
 import LoadingSpinner from '../../shared/components/UIElements/LoadingSpinner';
 import {
@@ -14,7 +15,6 @@ import { useForm } from '../../shared/hooks/form-hook';
 import { useHttpClient } from '../../shared/hooks/http-hook';
 import { AuthContext } from '../../shared/context/auth-context';
 import './BlogComments.css';
-import ReplyComment from './ReplyComment';
 
 const BlogComments = () => {
 	const navigate = useNavigate();
@@ -67,10 +67,10 @@ const BlogComments = () => {
 					value: auth.userId ? auth.userId : null,
 					isValid: auth.userId ? true : false,
 				},
-				responseTo: {
-					value: auth.userId ? auth.userId : null,
-					isValid: auth.userId ? true : false,
-				},
+				// responseTo: {
+				// 	value: auth.userId ? auth.userId : null,
+				// 	isValid: auth.userId ? true : false,
+				// },
 			},
 			false
 		);
@@ -121,19 +121,17 @@ const BlogComments = () => {
 						{!comments.length && <h1>No Comment Yet</h1>}
 
 						{comments &&
-							comments.map((comment, index) => (
-								<>
-									<BlogSingleComment
-										key={comment.id}
-										comment={comment}
-									/>
-									{/* <ReplyComment
-										comments={comments}
-										parentCommentId={comment.id}
-										key={index}
-									/> */}
-								</>
-							))}
+							comments.map(
+								(comment, index) =>
+									!comment.responseTo && (
+										<div key={comment.id}>
+											<BlogSingleComment
+												key={comment.id}
+												comment={comment}
+											/>
+										</div>
+									)
+							)}
 
 						<form
 							className='comment-form'
