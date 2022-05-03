@@ -1,32 +1,44 @@
 import { useState, useContext, memo } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
+import BlogEditAndDelete from './BlogEditAndDelete';
 import Button from '../../shared/components/FormElements/Button';
 import Modal from '../../shared/components/UIElements/Modal';
 import ErrorModal from '../../shared/components/UIElements/ErrorModal';
+import Loadingspinner from '../../shared/components/UIElements/LoadingSpinner';
+
 import { AuthContext } from '../../shared/context/auth-context';
 import { useHttpClient } from '../../shared/hooks/http-hook';
 import './BlogDetailItem.css';
-import Loadingspinner from '../../shared/components/UIElements/LoadingSpinner';
 
-const BlogDetailItem = (props) => {
+const BlogDetailItem = ({
+	id,
+	image,
+	title,
+	description,
+	creatorId,
+}) => {
+	const auth = useContext(AuthContext);
 	const navigate = useNavigate();
+
+	const [showConfirmModal, setShowConfirmModal] = useState(false);
+	
 	const { error, isLoading, sendRequest, clearError } =
 		useHttpClient();
-	const auth = useContext(AuthContext);
-	const [showConfirmModal, setShowConfirmModal] = useState(false);
 
 	const showDeleteWarningHandelr = () => {
 		setShowConfirmModal(true);
 	};
+
 	const cancelDeleteHandler = () => {
 		setShowConfirmModal(false);
 	};
+
 	const confirmDeleteHandler = async () => {
 		setShowConfirmModal(false);
 		try {
 			await sendRequest(
-				`http://localhost:5000/api/blogs/${props.id}`,
+				`http://localhost:5000/api/blogs/${id}`,
 				'DELETE',
 				null,
 				{ Authorization: `Bearer ` + auth.token }
@@ -61,25 +73,14 @@ const BlogDetailItem = (props) => {
 			</Modal>
 			<div className='blogDetail__item'>
 				{isLoading && <Loadingspinner asOverlay />}
-				{auth.userId === props.creatorId && (
-					<div className='blogDetail__icons'>
-						<Link to={`/blog/edit/${props.id}`}>
-							<i className='fa-solid fa-pen-to-square'></i>
-						</Link>
-						<i
-							className='fa-solid fa-trash'
-							onClick={showDeleteWarningHandelr}
-						></i>
-					</div>
+				{auth.userId === creatorId && (
+					<BlogEditAndDelete
+						id={id}
+						onDelete={showDeleteWarningHandelr}
+					/>
 				)}
-				{/*********** MongoDB + Local image **********/}
-				{/* <img src={`http://localhost:5000/${props.image}`} alt={props.title} /> */}
-				{/********************************************/}
-
-				{/*********** MongoDB + Cloudinary image **********/}
-				<img src={`${props.image}`} alt={props.title} />
-				{/********************************************/}
-				<p>&nbsp;{props.description}</p>
+				<img src={`${image}`} alt={title} />
+				<p>&nbsp;{description}</p>
 			</div>
 		</>
 	);

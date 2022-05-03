@@ -1,4 +1,4 @@
-import { useEffect, useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import Button from '../../shared/components/FormElements/Button';
@@ -61,6 +61,7 @@ const NewBlog = () => {
 			navigate('/');
 		} catch (err) {}
 	};
+
 
 	useEffect(() => {
 		window.scrollTo(0, 0);

@@ -15,10 +15,6 @@ import './EditBlog.css';
 import { AuthContext } from '../../shared/context/auth-context';
 
 const EditBlog = () => {
-	useEffect(() => {
-		window.scrollTo(0, 0);
-	}, []);
-
 	const auth = useContext(AuthContext);
 	const navigate = useNavigate();
 	const { blogId } = useParams();
@@ -40,6 +36,10 @@ const EditBlog = () => {
 		},
 		false
 	);
+
+	useEffect(() => {
+		window.scrollTo(0, 0);
+	}, []);
 
 	useEffect(() => {
 		const fetchBlog = async () => {

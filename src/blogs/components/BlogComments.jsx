@@ -1,5 +1,5 @@
-import { useContext, useEffect, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useContext, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 
 import Input from '../../shared/components/FormElements/Input';
 import Button from '../../shared/components/FormElements/Button';
@@ -7,6 +7,7 @@ import BlogSingleComment from './BlogSingleComment';
 import ReplyComment from './ReplyComment';
 import ErrorModal from '../../shared/components/UIElements/ErrorModal';
 import LoadingSpinner from '../../shared/components/UIElements/LoadingSpinner';
+
 import {
 	VALIDATOR_MAXLENGTH,
 	VALIDATOR_REQUIRE,
@@ -16,15 +17,13 @@ import { useHttpClient } from '../../shared/hooks/http-hook';
 import { AuthContext } from '../../shared/context/auth-context';
 import './BlogComments.css';
 
-const BlogComments = () => {
-	const navigate = useNavigate();
+const BlogComments = ({ comments, fetchBlog }) => {
 	const auth = useContext(AuthContext);
-
 	const { blogId } = useParams();
+
 	const { isLoading, error, sendRequest, clearError } =
 		useHttpClient();
 
-	const [comments, setComments] = useState([]);
 	const [formState, inputHandler, setFormData] = useForm(
 		{
 			comment: {
@@ -48,16 +47,8 @@ const BlogComments = () => {
 	);
 
 	useEffect(() => {
-		const fetchBlogDetail = async () => {
-			try {
-				const responseData = await sendRequest(
-					`http://localhost:5000/api/blogs/${blogId}/comments`
-				);
-				setComments(responseData.blog.comments);
-			} catch (err) {}
-		};
-		fetchBlogDetail();
-	}, [sendRequest, blogId, comments.length]);
+		window.scrollTo(0, 0);
+	}, []);
 
 	useEffect(() => {
 		setFormData(
@@ -67,10 +58,6 @@ const BlogComments = () => {
 					value: auth.userId ? auth.userId : null,
 					isValid: auth.userId ? true : false,
 				},
-				// responseTo: {
-				// 	value: auth.userId ? auth.userId : null,
-				// 	isValid: auth.userId ? true : false,
-				// },
 			},
 			false
 		);
@@ -90,16 +77,7 @@ const BlogComments = () => {
 					Authorization: 'Bearer ' + auth.token,
 				}
 			);
-			const fetchBlogDetail = async () => {
-				try {
-					const responseData = await sendRequest(
-						`http://localhost:5000/api/blogs/${blogId}/comments`
-					);
-					setComments(responseData.blog.comments);
-				} catch (err) {}
-			};
-			fetchBlogDetail();
-			navigate(`/blog/${blogId}`);
+			fetchBlog();
 		} catch (err) {}
 	};
 
@@ -112,22 +90,31 @@ const BlogComments = () => {
 						<LoadingSpinner asOverlay />
 					</div>
 				)}
+
 				{!isLoading && comments && (
-					<>
-						{comments.length > 1 && (
+					<div>
+						{comments.length > 1 ? (
 							<h1>{comments.length} Comments</h1>
+						) : (
+							<h1>{comments.length} Comment</h1>
 						)}
-						{comments.length === 1 && <h1>1 Comment</h1>}
-						{!comments.length && <h1>No Comment Yet</h1>}
 
 						{comments &&
 							comments.map(
-								(comment, index) =>
+								(comment) =>
 									!comment.responseTo && (
 										<div key={comment.id}>
 											<BlogSingleComment
 												key={comment.id}
 												comment={comment}
+												blogId={blogId}
+												comments={comments}
+												fetchBlog={fetchBlog}
+											/>
+											<ReplyComment
+												comment={comment}
+												comments={comments}
+												parentCommentId={comment.id}
 											/>
 										</div>
 									)
@@ -137,17 +124,16 @@ const BlogComments = () => {
 							className='comment-form'
 							onSubmit={commentSubmitHandler}
 						>
-							{isLoading && <LoadingSpinner asOverlay />}
 							<div className='comment-form__container'>
 								<Input
 									id='comment'
 									label='LEAVE YOUR COMMENTS'
 									validators={[
 										VALIDATOR_REQUIRE(),
-										VALIDATOR_MAXLENGTH(300000),
+										VALIDATOR_MAXLENGTH(500),
 									]}
 									rows='10'
-									errorText='Please enter valid comments'
+									errorText='Please enter valid comments.(within 500 characters)'
 									onInput={inputHandler}
 									disabled={!auth.userId && 'disabled'}
 								/>
@@ -156,7 +142,7 @@ const BlogComments = () => {
 								</Button>
 							</div>
 						</form>
-					</>
+					</div>
 				)}
 			</div>
 		</>

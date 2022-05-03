@@ -1,9 +1,9 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
-import BlogDetailAuthor from '../components/BlogDetailAuthor';
 import BlogDetailHeader from '../components/BlogDetailHeader';
 import BlogDetailItem from '../components/BlogDetailItem';
+import BlogDetailAuthor from '../components/BlogDetailAuthor';
 import BlogComments from '../components/BlogComments';
 import ErrorModal from '../../shared/components/UIElements/ErrorModal';
 import LoadingSpinner from '../../shared/components/UIElements/LoadingSpinner';
@@ -11,23 +11,24 @@ import { useHttpClient } from '../../shared/hooks/http-hook';
 import './BlogDetail.css';
 
 const BlogDetail = () => {
+	const { blogId } = useParams();
 	const [blog, setBlog] = useState();
 
 	const { isLoading, error, sendRequest, clearError } =
 		useHttpClient();
-	const { blogId } = useParams();
+
+	const fetchBlogDetail = useCallback(async () => {
+		try {
+			const responseData = await sendRequest(
+				`http://localhost:5000/api/blogs/${blogId}`
+			);
+			setBlog(responseData.blog);
+		} catch (err) {}
+	}, [blogId, sendRequest]);
 
 	useEffect(() => {
-		const fetchBlogDetail = async () => {
-			try {
-				const responseData = await sendRequest(
-					`http://localhost:5000/api/blogs/${blogId}`
-				);
-				setBlog(responseData.blog);
-			} catch (err) {}
-		};
 		fetchBlogDetail();
-	}, [sendRequest, blogId]);
+	}, [sendRequest, blogId, fetchBlogDetail]);
 
 	useEffect(() => {
 		window.scrollTo(0, 0);
@@ -44,7 +45,7 @@ const BlogDetail = () => {
 			<div className='blogDetail'>
 				{!isLoading && blog && (
 					<>
-						<BlogDetailHeader header={blog.title} />
+						<BlogDetailHeader headerTitle={blog.title} />
 						<BlogDetailItem
 							id={blog.id}
 							image={blog.image}
@@ -58,10 +59,8 @@ const BlogDetail = () => {
 							avatar={blog.creator.avatar}
 						/>
 						<BlogComments
-							creator={blog.creator.name}
-							creatorInfo={blog.creatorInfo}
-							avatar={blog.creator.avatar}
-							blog={blog}
+							comments={blog.comments}
+							fetchBlog={fetchBlogDetail}
 						/>
 					</>
 				)}

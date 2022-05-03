@@ -55,6 +55,7 @@ textarea {
 	background: #ffd1d1;
 }
 
+.form-control input:disabled,
 .form-control textarea:disabled,
 .form-control textarea:hover:disabled,
 .form-control textarea:active:disabled {

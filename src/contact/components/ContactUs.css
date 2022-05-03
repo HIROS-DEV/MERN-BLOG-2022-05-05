@@ -50,6 +50,12 @@
 	font-size: 0.9rem;
 }
 
+.contactUs__successMessage {
+	color: royalblue !important;
+	padding: 10px 0;
+	word-wrap: break-word;
+}
+
 .map-container {
 	width: 600px;
 	height: 600px;

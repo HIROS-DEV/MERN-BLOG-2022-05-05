@@ -1,39 +1,56 @@
 import { useState, useContext, memo } from 'react';
 import { Link } from 'react-router-dom';
-import { useParallax, Parallax } from 'react-scroll-parallax';
+import { useParallax } from 'react-scroll-parallax';
 
 import Modal from '../../shared/components/UIElements/Modal';
 import ErrorModal from '../../shared/components/UIElements/ErrorModal';
 import Loadingspinner from '../../shared/components/UIElements/LoadingSpinner';
 import Button from '../../shared/components/FormElements/Button';
+
 import { AuthContext } from '../../shared/context/auth-context';
 import { useHttpClient } from '../../shared/hooks/http-hook';
 import './BlogItem.css';
+import BlogEditAndDelete from './BlogEditAndDelete';
 
-const BlogItem = (props) => {
+const BlogItem = ({
+	id,
+	index,
+	image,
+	title,
+	avatar,
+	creator,
+	onDelete,
+	createdAt,
+	creatorId,
+	description,
+	comments,
+}) => {
 	const auth = useContext(AuthContext);
-	const {ref} = useParallax({speed: 15})
+	const { ref } = useParallax({ speed: 15 });
 
 	const { isLoading, error, sendRequest, clearError } =
 		useHttpClient();
+
 	const [showConfirmModal, setShowConfirmModal] = useState(false);
 
 	const showDeleteWarningHandelr = () => {
 		setShowConfirmModal(true);
 	};
+
 	const cancelDeleteHandler = () => {
 		setShowConfirmModal(false);
 	};
+
 	const confirmDeleteHandler = async () => {
 		setShowConfirmModal(false);
 		try {
 			await sendRequest(
-				`http://localhost:5000/api/blogs/${props.id}`,
+				`http://localhost:5000/api/blogs/${id}`,
 				'DELETE',
 				null,
 				{ Authorization: `Bearer ` + auth.token }
 			);
-			props.onDelete(props.id);
+			onDelete(id);
 		} catch (err) {}
 	};
 
@@ -63,60 +80,47 @@ const BlogItem = (props) => {
 			</Modal>
 			<li
 				className={
-					props.index % 2 === 0
-						? `blogItem__li`
-						: `blogItem__li reverse`
+					index % 2 === 0 ? `blogItem__li` : `blogItem__li reverse`
 				}
 			>
 				{isLoading && <Loadingspinner asOverlay />}
 				<div ref={ref} className='blogItem__imgContainer'>
-					<Link to={`/blog/${props.id}`}>
-						{/*********** MongoDB + Local image **********/}
-						{/* <img src={`http://localhost:5000/${props.image}`} alt={props.title} /> */}
-						{/********************************************/}
-
-						{/*********** MongoDB + Cloudinary image **********/}
-						<img src={`${props.image}`} alt={props.title} />
-						{/********************************************/}
+					<Link to={`/blog/${id}`}>
+						<img src={`${image}`} alt={title} />
 					</Link>
 				</div>
 				<div className='blogItem__summaryContainer'>
 					<div className='blogItem__itemContainer'>
 						<div className='blogItem__itemWrapper'>
 							<img
-								src={`${props.avatar}`}
+								src={`${avatar}`}
 								alt='avatar'
 								className='blogItem__avatar'
 							/>
-							<p>{props.creator}</p>
+							<p>{creator}</p>
 						</div>
 						<div className='blogItem__itemWrapper'>
 							<i className='fa-solid fa-calendar-days'></i>
-							<p>{props.createdAt}</p>
+							<p>{createdAt}</p>
 						</div>
 						<div className='blogItem__itemWrapper'>
-							<Link to={`/blog/${props.id}`}>
+							<Link to={`/blog/${id}`}>
 								<i className='fa-solid fa-comment'></i>
-								<p>3</p>
+								<p>{comments.length}</p>
 							</Link>
 						</div>
-						{auth.userId === props.creatorId && (
-							<div className='blogItem__itemWrapper'>
-								<Link to={`/blog/edit/${props.id}`}>
-									<i className='fa-solid fa-pen-to-square'></i>
-								</Link>
-								<i
-									className='fa-solid fa-trash'
-									onClick={showDeleteWarningHandelr}
-								></i>
-							</div>
+						{auth.userId === creatorId && (
+							<BlogEditAndDelete
+								id={id}
+								onDelete={showDeleteWarningHandelr}
+							/>
 						)}
 					</div>
-					<Link to={`/blog/${props.id}`}>
-						<h1>{props.title}</h1>
+					<Link to={`/blog/${id}`}>
+						<h1>{title}</h1>
 					</Link>
-					<p>{props.description}</p>
-					<Button to={`/blog/${props.id}`}>
+					<p>{description}</p>
+					<Button to={`/blog/${id}`}>
 						SEE MORE<i className='fa-solid fa-arrow-right-long'></i>
 					</Button>
 				</div>

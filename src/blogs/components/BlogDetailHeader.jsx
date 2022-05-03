@@ -1,10 +1,10 @@
-import {memo} from 'react'
+import { memo } from 'react';
 import './BlogDetailHeader.css';
 
-const BlogDetailHeader = (props) => {
+const BlogDetailHeader = ({ headerTitle }) => {
 	return (
 		<header className='blogDetail__header'>
-			<h1>{props.header}</h1>
+			<h1>{headerTitle}</h1>
 		</header>
 	);
 };

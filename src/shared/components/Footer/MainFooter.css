@@ -77,6 +77,7 @@
 .footer__recentPostsLi a i,
 .footer__recentPostsLi a p {
 	transition: all 0.4s;
+		padding: 0 2px;
 }
 
 .footer__recentPostsLi a:hover i,

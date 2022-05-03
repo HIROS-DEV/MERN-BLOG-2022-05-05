@@ -1,4 +1,4 @@
-import { useEffect, useState, useContext } from 'react';
+import { useState, useContext, useEffect } from 'react';
 
 import Input from '../../shared/components/FormElements/Input';
 import Button from '../../shared/components/FormElements/Button';
@@ -18,10 +18,6 @@ import { AuthContext } from '../../shared/context/auth-context';
 import './Auth.css';
 
 const Auth = () => {
-	useEffect(() => {
-		window.scrollTo(0, 0);
-	}, []);
-
 	const auth = useContext(AuthContext);
 
 	const [isLoginMode, setIsLoginMode] = useState(true);
@@ -104,6 +100,10 @@ const Auth = () => {
 			} catch (err) {}
 		}
 	};
+
+	useEffect(() => {
+		window.scrollTo(0, 0);
+	}, []);
 
 	return (
 		<>

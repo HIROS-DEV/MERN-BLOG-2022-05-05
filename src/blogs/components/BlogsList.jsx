@@ -2,18 +2,18 @@ import {memo} from 'react'
 import BlogItem from './BlogItem';
 import './BlogsList.css';
 
-const BlogsList = (props) => {
-	if (props.items.length === 0) {
+const BlogsList = ({ items, onDeleteBlog }) => {
+	if (items.length === 0) {
 		return (
-			<div className=''>
-				<h2>No blog found.</h2>
+			<div className='blogslist__notfound'>
+				<h2>No blog yet...</h2>
 			</div>
 		);
 	}
 
 	return (
 		<ul>
-			{props.items.map((blog, index) => (
+			{items.map((blog, index) => (
 				<BlogItem
 					key={blog.id}
 					id={blog.id}
@@ -25,7 +25,8 @@ const BlogsList = (props) => {
 					creatorId={blog.creator.id}
 					createdAt={new Date(blog.createdAt).toLocaleDateString()}
 					index={index}
-					onDelete={props.onDeleteBlog}
+					onDelete={onDeleteBlog}
+					comments={blog.comments}
 				/>
 			))}
 		</ul>
