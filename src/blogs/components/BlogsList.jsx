@@ -1,8 +1,15 @@
-import {memo} from 'react'
+import { memo } from 'react';
 import BlogItem from './BlogItem';
+import Pagination from './Pagination';
 import './BlogsList.css';
 
-const BlogsList = ({ items, onDeleteBlog }) => {
+const BlogsList = ({
+	items,
+	onDeleteBlog,
+	page,
+	totalPages,
+	changePage,
+}) => {
 	if (items.length === 0) {
 		return (
 			<div className='blogslist__notfound'>
@@ -29,6 +36,11 @@ const BlogsList = ({ items, onDeleteBlog }) => {
 					comments={blog.comments}
 				/>
 			))}
+			<Pagination
+				page={page}
+				pages={totalPages}
+				changePage={changePage}
+			/>
 		</ul>
 	);
 };

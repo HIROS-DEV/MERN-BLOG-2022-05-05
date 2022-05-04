@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import {useParams} from 'react-router-dom'
 
 import BlogsHeader from '../../shared/components/Header/BlogsHeader';
 import BlogsList from '../components/BlogsList';
@@ -9,6 +10,10 @@ import { useHttpClient } from '../../shared/hooks/http-hook';
 import './Blogs.css';
 
 const Blogs = () => {
+	const pageNumber = useParams().pageNumber || 1;
+	const [page, setPage] = useState(pageNumber);
+	const [totalPages, setTotalPages] = useState(1);
+
 	const { isLoading, error, sendRequest, clearError } =
 		useHttpClient();
 	const [loadedBlogs, setLoadedBlogs] = useState();
@@ -23,13 +28,14 @@ const Blogs = () => {
 		const fetchBlogs = async () => {
 			try {
 				const responseData = await sendRequest(
-					`http://localhost:5000/api/blogs`
+					`http://localhost:5000/api/blogs?page=${page}`
 				);
 				setLoadedBlogs(responseData.blogs);
+				setTotalPages(responseData.pages);
 			} catch (err) {}
 		};
 		fetchBlogs();
-	}, [sendRequest]);
+	}, [sendRequest, page]);
 
 	useEffect(() => {
 		window.scrollTo(0, 0);
@@ -50,6 +56,9 @@ const Blogs = () => {
 						<BlogsList
 							items={loadedBlogs}
 							onDeleteBlog={blogDeleteHandler}
+							page={page}
+							totalPages={totalPages}
+							changePage={setPage}
 						/>
 					</>
 				)}
