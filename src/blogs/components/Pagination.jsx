@@ -8,7 +8,7 @@ import './Pagination.css';
 const Pagination = ({ page, pages, changePage }) => {
 	let middlePagination;
 
-	if (pages <= 5) {
+	if (pages <= 3) {
 		middlePagination = [...Array(pages)].map((_, idx) => (
 			<button
 				key={idx + 1}
@@ -19,11 +19,11 @@ const Pagination = ({ page, pages, changePage }) => {
 			</button>
 		));
 	} else {
-		const startValue = Math.floor((page - 1) / 5) * 5;
+		const startValue = Math.floor((page - 1) / 3) * 3;
 
 		middlePagination = (
 			<>
-				{[...Array(5)].map((_, idx) => (
+				{[...Array(3)].map((_, idx) => (
 					<button
 						key={startValue + idx + 1}
 						disabled={page === startValue + idx + 1}
@@ -38,8 +38,8 @@ const Pagination = ({ page, pages, changePage }) => {
 			</>
 		);
 
-		if (page > 5) {
-			if (pages - page >= 5) {
+		if (page > 3) {
+			if (pages - page >= 3) {
 				middlePagination = (
 					<>
 						<button onClick={() => changePage(1)}>1</button>
@@ -47,7 +47,7 @@ const Pagination = ({ page, pages, changePage }) => {
 						<button onClick={() => changePage(startValue)}>
 							{startValue}
 						</button>
-						{[...Array(5)].map((_, idx) => (
+						{[...Array(3)].map((_, idx) => (
 							<button
 								key={startValue + idx + 1}
 								disabled={page === startValue + idx + 1}
@@ -62,7 +62,7 @@ const Pagination = ({ page, pages, changePage }) => {
 					</>
 				);
 			} else {
-				let amountLeft = pages - page + 5;
+				let amountLeft = pages - page + 3;
 				middlePagination = (
 					<>
 						<button onClick={() => changePage(1)}>1</button>

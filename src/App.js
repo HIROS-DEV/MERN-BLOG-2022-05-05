@@ -28,7 +28,6 @@ const App = () => {
 		routes = (
 			<>
 				<Route path='/' element={<Blogs />} />
-				<Route path='/:pageNumber' element={<Blogs />} />
 				<Route path='/blog/:blogId' element={<BlogDetail />} />
 				<Route path='/about' element={<About />} />
 				<Route path='/contact' element={<Contact />} />
@@ -41,7 +40,6 @@ const App = () => {
 		routes = (
 			<>
 				<Route path='/' element={<Blogs />} />
-				<Route path='/:pageNumber' element={<Blogs />} />
 				<Route path='/blog/:blogId' element={<BlogDetail />} />
 				<Route path='/about' element={<About />} />
 				<Route path='/auth' element={<Auth />} />
