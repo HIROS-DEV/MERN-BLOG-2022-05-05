@@ -7,6 +7,9 @@ This is the MERN BLOG for The Odin Project :BLOG API(https://www.theodinproject.
 ## APP URL
 https://mern-blog-2022-05-05.vercel.app/
 
+## Github repo for server side
+https://github.com/HIROS-DEV/MERN-BLOG-2022-05-05--Server
+
 ## Features
 
 - Authentication (Signup & Login with jsonwebtoken)
