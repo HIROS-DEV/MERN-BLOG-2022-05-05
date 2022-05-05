@@ -58,7 +58,7 @@ const ContactUs = ({ aos }) => {
 		e.preventDefault();
 		try {
 			const data = await sendRequest(
-				`http://localhost:5000/api/contact`,
+				`${process.env.REACT_APP_BACKEND_URL}/contact`,
 				'POST',
 				JSON.stringify({
 					name: formState.inputs.name.value,

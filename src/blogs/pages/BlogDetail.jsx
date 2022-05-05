@@ -20,7 +20,7 @@ const BlogDetail = () => {
 	const fetchBlogDetail = useCallback(async () => {
 		try {
 			const responseData = await sendRequest(
-				`http://localhost:5000/api/blogs/${blogId}`
+				`${process.env.REACT_APP_BACKEND_URL}/blogs/${blogId}`
 			);
 			setBlog(responseData.blog);
 		} catch (err) {}

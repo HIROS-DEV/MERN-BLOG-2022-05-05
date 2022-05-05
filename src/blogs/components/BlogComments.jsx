@@ -67,7 +67,7 @@ const BlogComments = ({ comments, fetchBlog }) => {
 		e.preventDefault();
 		try {
 			await sendRequest(
-				`http://localhost:5000/api/blogs/${blogId}/comment`,
+				`${process.env.REACT_APP_BACKEND_URL}/blogs/${blogId}/comment`,
 				'POST',
 				JSON.stringify({
 					comment: formState.inputs.comment.value,

@@ -1,3 +1,4 @@
+import React, { Suspense } from 'react';
 import {
 	BrowserRouter as Router,
 	Routes,
@@ -6,19 +7,29 @@ import {
 } from 'react-router-dom';
 import { ParallaxProvider } from 'react-scroll-parallax';
 
-import Blogs from './blogs/pages/Blogs';
-import BlogDetail from './blogs/pages/BlogDetail';
-import NewBlog from './blogs/pages/NewBlog';
-import EditBlog from './blogs/pages/EditBlog';
-import Auth from './auth/pages/Auth';
-import About from './about/pages/About';
-import Contact from './contact/pages/Contact';
+// import Blogs from './blogs/pages/Blogs';
+// import BlogDetail from './blogs/pages/BlogDetail';
+// import NewBlog from './blogs/pages/NewBlog';
+// import EditBlog from './blogs/pages/EditBlog';
+// import Auth from './auth/pages/Auth';
+// import About from './about/pages/About';
+// import Contact from './contact/pages/Contact';
 import MainHeader from './shared/components/Header/MainHeader';
+import MainFooter from './shared/components/Footer/MainFooter';
+import Loadingspinner from './shared/components/UIElements/LoadingSpinner';
 import { AuthContext } from './shared/context/auth-context';
 import { useAuth } from './shared/hooks/auth-hook';
-import MainFooter from './shared/components/Footer/MainFooter';
-
 import './App.css';
+
+const Blogs = React.lazy(() => import('./blogs/pages/Blogs'));
+const BlogDetail = React.lazy(() =>
+	import('./blogs/pages/BlogDetail')
+);
+const NewBlog = React.lazy(() => import('./blogs/pages/NewBlog'));
+const EditBlog = React.lazy(() => import('./blogs/pages/EditBlog'));
+const Auth = React.lazy(() => import('./auth/pages/Auth'));
+const About = React.lazy(() => import('./about/pages/About'));
+const Contact = React.lazy(() => import('./contact/pages/Contact'));
 
 const App = () => {
 	const { token, login, logout, userId } = useAuth();
@@ -64,7 +75,15 @@ const App = () => {
 					<Router>
 						<MainHeader />
 						<main className='app__main'>
-							<Routes>{routes}</Routes>
+							<Suspense
+								fallback={
+									<div>
+										<Loadingspinner asOverlay />
+									</div>
+								}
+							>
+								<Routes>{routes}</Routes>
+							</Suspense>
 						</main>
 						<MainFooter />
 					</Router>

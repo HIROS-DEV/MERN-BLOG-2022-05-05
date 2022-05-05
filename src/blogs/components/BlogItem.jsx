@@ -45,7 +45,7 @@ const BlogItem = ({
 		setShowConfirmModal(false);
 		try {
 			await sendRequest(
-				`http://localhost:5000/api/blogs/${id}`,
+				`${process.env.REACT_APP_BACKEND_URL}/blogs/${id}`,
 				'DELETE',
 				null,
 				{ Authorization: `Bearer ` + auth.token }

@@ -33,7 +33,7 @@ const Newsletter = () => {
 		e.preventDefault();
 		try {
 			const data = await sendRequest(
-				`http://localhost:5000/api/newsletter`,
+				`${process.env.REACT_APP_BACKEND_URL}/newsletter`,
 				'POST',
 				JSON.stringify({
 					email: formState.inputs.newsletter.value,

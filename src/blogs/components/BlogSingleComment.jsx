@@ -56,7 +56,7 @@ const BlogSingleComment = ({ comment, blogId, fetchBlog }) => {
 		e.preventDefault();
 		try {
 			await sendRequest(
-				`http://localhost:5000/api/blogs/${blogId}/comment`,
+				`${process.env.REACT_APP_BACKEND_URL}/blogs/${blogId}/comment`,
 				'POST',
 				JSON.stringify({
 					comment: formState.inputs.comment.value,
@@ -83,7 +83,7 @@ const BlogSingleComment = ({ comment, blogId, fetchBlog }) => {
 		setShowConfirmModal(false);
 		try {
 			await sendRequest(
-				`http://localhost:5000/api/blogs/${blogId}/comment/${comment.id}`,
+				`${process.env.REACT_APP_BACKEND_URL}/blogs/${blogId}/comment/${comment.id}`,
 				'DELETE',
 				null,
 				{ Authorization: `Bearer ` + auth.token }

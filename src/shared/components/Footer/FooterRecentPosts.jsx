@@ -14,7 +14,7 @@ const FooterRecentPosts = () => {
 		const fetchBlogs = async () => {
 			try {
 				const responseData = await sendRequest(
-					`http://localhost:5000/api/blogs`
+					`${process.env.REACT_APP_BACKEND_URL}/blogs`
 				);
 				const recentPosts = responseData.blogs.slice(0, 3);
 				setLoadedBlogs(recentPosts);

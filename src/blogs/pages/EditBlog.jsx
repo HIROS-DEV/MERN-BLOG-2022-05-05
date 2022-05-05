@@ -45,7 +45,7 @@ const EditBlog = () => {
 		const fetchBlog = async () => {
 			try {
 				const responseData = await sendRequest(
-					`http://localhost:5000/api/blogs/${blogId}`
+					`${process.env.REACT_APP_BACKEND_URL}/blogs/${blogId}`
 				);
 				setLoadedBlog(responseData.blog);
 				setFormData(
@@ -70,7 +70,7 @@ const EditBlog = () => {
 		e.preventDefault();
 		try {
 			await sendRequest(
-				`http://localhost:5000/api/blogs/${blogId}`,
+				`${process.env.REACT_APP_BACKEND_URL}/blogs/${blogId}`,
 				'PATCH',
 				JSON.stringify({
 					title: formState.inputs.title.value,
