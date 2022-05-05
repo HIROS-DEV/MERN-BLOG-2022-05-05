@@ -20,12 +20,11 @@ This is the MERN BLOG for The Odin Project :BLOG API(https://www.theodinproject.
 I used .env & .env.production file in the client side.
 And, nodemon.json file in the server side.
 
------Client Side(.env & .env.production)-----
+-Client Side(.env & .env.production)-
 REACT_APP_MAPBOX_TOKEN= "your mapbox token here"
 REACT_APP_BACKEND_URL= "your server side url here"
---------------------------------------------------
 
------Server Side(nodemon.json)-----
+-Server Side(nodemon.json)-
 {
     "env": {
         "MONGO_USERNAME": "your mongodb usename here",
@@ -42,4 +41,3 @@ REACT_APP_BACKEND_URL= "your server side url here"
         "CONTACTFORM_PASSWORD": "admin password here"
     }
 }
---------------------------------------------------
