@@ -1,70 +1,45 @@
-# Getting Started with Create React App
+# MERN BLOG 2022-05-05
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is the MERN BLOG for The Odin Project :BLOG API(https://www.theodinproject.com/lessons/nodejs-blog-api) 
 
-## Available Scripts
+![screenshot](https://res.cloudinary.com/dcuaa601z/image/upload/v1651733206/MERN-BLOG/screen_cazwk1.png)
 
-In the project directory, you can run:
+## Features
 
-### `npm start`
+- Authentication (Signup & Login with jsonwebtoken)
+- Create Blog (Not only text, but also upload image with multer and cloudinary)
+- Update & Delete Blog
+- Pagination
+- Create & Delete Comment(s)
+- Subscribe newsletter with mailchimp
+- Show map with mapbox
+- Contact form with nodemailer
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Env Variables
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+I used .env & .env.production file in the client side.
+And, nodemon.json file in the server side.
 
-### `npm test`
+-----Client Side(.env & .env.production)-----
+REACT_APP_MAPBOX_TOKEN= "your mapbox token here"
+REACT_APP_BACKEND_URL= "your server side url here"
+--------------------------------------------------
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+-----Server Side(nodemon.json)-----
+{
+    "env": {
+        "MONGO_USERNAME": "your mongodb usename here",
+        "MONGO_PASSWORD": "your mongodb password here",
+        "MONGO_DATABASE": "your mongo db database name here",
+        "CLOUDINARY_CLOUD_NAME": "your cloudinary cloud name here",
+        "CLOUDINARY_KEY": "your cloudinary key here",
+        "CLOUDINARY_SECRET": "your cloudinary secret here",
+        "JWT_SECRET":"your jwt secret here",
+        "MAILCHIMP_API_KEY": "your mailchimp api key here",
+        "MAILCHIMP_API_SERVER": "your mailchimp api server here",
+        "MAILCHIMP_LIST_ID": "your mailchimp list id here",
+        "CONTACTFORM_USER": "admin email address here",
+        "CONTACTFORM_PASSWORD": "admin password here"
+    }
+}
+--------------------------------------------------
