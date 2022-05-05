@@ -71,7 +71,7 @@ const Auth = () => {
 		if (isLoginMode) {
 			try {
 				const responseData = await sendRequest(
-					`${process.env.REACT_APP_BACKEND_URL}/api/auth/login`,
+					`${process.env.REACT_APP_BACKEND_URL}/auth/login`,
 					'POST',
 					JSON.stringify({
 						email: formState.inputs.email.value,
