@@ -7,13 +7,6 @@ import {
 } from 'react-router-dom';
 import { ParallaxProvider } from 'react-scroll-parallax';
 
-// import Blogs from './blogs/pages/Blogs';
-// import BlogDetail from './blogs/pages/BlogDetail';
-// import NewBlog from './blogs/pages/NewBlog';
-// import EditBlog from './blogs/pages/EditBlog';
-// import Auth from './auth/pages/Auth';
-// import About from './about/pages/About';
-// import Contact from './contact/pages/Contact';
 import MainHeader from './shared/components/Header/MainHeader';
 import MainFooter from './shared/components/Footer/MainFooter';
 import Loadingspinner from './shared/components/UIElements/LoadingSpinner';
